@@ -98,4 +98,16 @@ class UtilController {
         db.author.update([name: 'Pulkit'],[name: 'Pulkit Pushkarna'])
         render(db.author.find()*.name)
     }
+
+    def addStudent() {
+        Student student = new Student(name: 'Deepak')
+        Course course = new Course(title: "Mongodb")
+        student.addToCourses(course)
+        course.addToStudents(student)
+        student.save(flush: true)
+        course.save(flush: true)
+        render("Students :: " + Student.list()*.name)
+        render("<br />")
+        render("Courses :: " + Course.list()*.title)
+    }
 }
