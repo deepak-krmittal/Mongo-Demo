@@ -102,10 +102,9 @@ class UtilController {
     def addStudent() {
         Student student = new Student(name: 'Deepak')
         Course course = new Course(title: "Mongodb")
-        student.addToCourses(course)
-        course.addToStudents(student)
-        student.save(flush: true)
         course.save(flush: true)
+        student.addToCourses(course)
+        student.save(flush: true)
         render("Students :: " + Student.list()*.name)
         render("<br />")
         render("Courses :: " + Course.list()*.title)
